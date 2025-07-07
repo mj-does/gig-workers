@@ -7,17 +7,33 @@ interface Props {
 
 const WalletConnect: React.FC<Props> = ({ onConnect }) => {
   const connectWallet = async () => {
+    console.log("🔘 Connect Wallet button clicked");
+
     try {
-      if (!window.ethereum) {
-        alert("Please install MetaMask to use this feature.");
+      // Check if MetaMask is installed
+      if (typeof window.ethereum === "undefined") {
+        alert("❗ MetaMask not found. Please install it.");
         return;
       }
 
+      // Request account access
       const provider = new ethers.BrowserProvider(window.ethereum);
       const accounts = await provider.send("eth_requestAccounts", []);
-      onConnect(accounts[0]);
-    } catch (err) {
-      console.error("Connection Error:", err);
+
+      if (accounts && accounts.length > 0) {
+        console.log("✅ Connected account:", accounts[0]);
+        onConnect(accounts[0]);
+      } else {
+        alert("❌ No accounts found. Please check MetaMask.");
+      }
+    } catch (err: any) {
+      console.error("❌ Wallet connection error:", err);
+
+      if (err.code === 4001) {
+        alert("❌ Connection rejected by user.");
+      } else {
+        alert("❌ Failed to connect wallet. See console for details.");
+      }
     }
   };
 
@@ -31,3 +47,4 @@ const WalletConnect: React.FC<Props> = ({ onConnect }) => {
 };
 
 export default WalletConnect;
+
