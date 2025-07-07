@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "target": "es6",
+      "strict": false,
+      "jsx": "react-jsx",
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipLibCheck": true,
+      "baseUrl": "./src"
+    },
+    "include": ["src"]
+  }
+  
