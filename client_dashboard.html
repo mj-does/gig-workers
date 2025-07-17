@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DigiGig Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <div class="sidebar">
+      <div class="sidebar-logo">
+        <img src="logo.png" alt="DigiGig Logo" />
+      </div>
+      <div class="sidebar-option" id="option-freelancers">Available Freelancers</div>
+      <div class="sidebar-option" id="option-sent">Sent Requests</div>
+      <div class="sidebar-option" id="option-received">Projects Received</div>
+    </div>
+    <div class="main-content" id="main-content">
+      <div class="digigig-glow-box">
+        <img src="logo.png" alt="DigiGig Logo" class="digigig-logo" />
+        <span class="digigig-title">DigiGig</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Sidebar navigation
+    document.getElementById('option-freelancers').onclick = function() {
+      document.getElementById('main-content').innerHTML = `
+        <div class='success-text' style='font-size:2rem; margin-bottom: 24px;'>Available Freelancers</div>
+        <ul class='freelancer-list'>
+          <li><a href='project_request.html?address=0xA1B2c3D4e5F678901234567890abcdef12345678'>0xA1B2c3D4e5F678901234567890abcdef12345678</a></li>
+          <li><a href='project_request.html?address=0xB2C3d4E5f678901234567890abcdef1234567890'>0xB2C3d4E5f678901234567890abcdef1234567890</a></li>
+          <li><a href='project_request.html?address=0xC3D4e5F678901234567890abcdef1234567890ab'>0xC3D4e5F678901234567890abcdef1234567890ab</a></li>
+          <li><a href='project_request.html?address=0xD4E5f678901234567890abcdef1234567890abcd'>0xD4E5f678901234567890abcdef1234567890abcd</a></li>
+        </ul>
+      `;
+    };
+    document.getElementById('option-sent').onclick = function() {
+      document.getElementById('main-content').innerHTML = `
+        <h2>Sent Requests</h2>
+        <table class="dashboard-table">
+          <tr><th>Title</th><th>Freelancer</th><th>Status</th></tr>
+          <tr><td>Logo Design</td><td>0xA1B2...5678</td><td>Pending</td></tr>
+          <tr><td>Website Build</td><td>0xB2C3...7890</td><td>Declined</td></tr>
+          <tr><td>App UI</td><td>0xC3D4...90ab</td><td>Received</td></tr>
+        </table>
+      `;
+    };
+    document.getElementById('option-received').onclick = function() {
+      document.getElementById('main-content').innerHTML = `
+        <h2>Projects Received</h2>
+        <div class="project-card">
+          <div><b>Title:</b> Logo Design</div>
+          <div><b>From:</b> 0xA1B2...5678</div>
+          <div><b>Work:</b> <a href="#" style="color:#ffd600;">View File</a></div>
+          <button class="approve-btn" onclick="window.location.href='project_approved.html'">Approve</button>
+          <button class="feedback-btn">Give Feedback</button>
+        </div>
+        <div class="project-card">
+          <div><b>Title:</b> App UI</div>
+          <div><b>From:</b> 0xC3D4...90ab</div>
+          <div><b>Work:</b> <a href="#" style="color:#ffd600;">View File</a></div>
+          <button class="approve-btn" onclick="window.location.href='project_approved.html'">Approve</button>
+          <button class="feedback-btn">Give Feedback</button>
+        </div>
+      `;
+    };
+  </script>
+</body>
+</html> 
