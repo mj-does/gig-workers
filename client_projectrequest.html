@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Request</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="wallet-box">
+      <div class="success-text" style="font-size:1.3rem; margin-bottom: 16px;">Send Project Request</div>
+      <div id="wallet-address" style="color:#ffd600; margin-bottom: 24px; font-family: monospace;"></div>
+      <form id="project-form">
+        <input type="text" name="title" placeholder="Project Title" required class="input-field"><br>
+        <textarea name="description" placeholder="Project Description" required class="input-field" style="height:80px;"></textarea><br>
+        <input type="number" name="price" placeholder="Price (ETH/USDC)" required class="input-field" min="0" step="any"><br>
+        <input type="date" name="deadline" required class="input-field"><br>
+        <button type="submit" class="submit-btn">Send Request</button>
+      </form>
+      <div id="status-message" style="margin-top:20px;"></div>
+    </div>
+  </div>
+  <script>
+    // Get address from URL
+    const params = new URLSearchParams(window.location.search);
+    const address = params.get('address');
+    document.getElementById('wallet-address').textContent = address ? `To: ${address}` : '';
+
+    // Demo form handler
+    document.getElementById('project-form').onsubmit = function(e) {
+      e.preventDefault();
+      window.location.href = 'request_sent.html';
+    };
+  </script>
+</body>
+</html> 
