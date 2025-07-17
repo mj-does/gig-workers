@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Proof of Work - DigiGig</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">
+      <a href="home.html"><img src="logo.png" alt="Logo"></a>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="home.html">Home</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="requests.html">Request Received</a></li>
+      <li><a href="uploaded.html">Uploaded Work</a></li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="upload-area">
+      <h2>Upload Proof of Work</h2>
+      <p class="accepted-formats">Accepted formats: PDF, PNG, JPG</p>
+      <div class="upload-controls">
+        <input type="file" id="fileInput">
+        <span class="file-name" id="fileName">No file chosen</span>
+        <button class="upload-btn">Upload to IPFS</button>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+      </div>
+      <div class="upload-success">
+        <input type="checkbox" checked disabled>
+        File uploaded! Access:
+        <a href="https://gateway.pinata.cloud/ipfs/QmbhYiNd8FFeN4r4VPT6EMEK1vS797ihg5MsLrUvAGP4pW" target="_blank">
+          https://gateway.pinata.cloud/ipfs/QmbhYiNd8FFeN4r4VPT6EMEK1vS797ihg5MsLrUvAGP4pW
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+    const uploadBtn = document.querySelector('.upload-btn');
+    const progressBar = document.querySelector('.progress-bar');
+    const uploadSuccess = document.querySelector('.upload-success');
+
+    fileInput.addEventListener('change', function() {
+      fileName.textContent = this.files.length ? this.files[0].name : 'No file chosen';
+      progressBar.style.width = '0%';
+      uploadSuccess.style.display = 'none';
+    });
+
+    uploadBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (!fileInput.files.length) return alert('Please choose a file!');
+      progressBar.style.width = '0%';
+      uploadSuccess.style.display = 'none';
+
+      // Simulate upload progress
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += Math.random() * 15 + 5; // Random progress increment
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(interval);
+          uploadSuccess.style.display = 'flex';
+        }
+        progressBar.style.width = progress + '%';
+      }, 200);
+    });
+
+    // Hide success message initially
+    uploadSuccess.style.display = 'none';
+    // Start with progress bar at 0%
+    progressBar.style.width = '0%';
+  </script>
+</body>
+</html> 
